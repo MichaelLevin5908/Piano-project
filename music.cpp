@@ -65,60 +65,95 @@ i++;}
 return true;
 }
 
-int transformPiece(string piece, string& instructions, int& badBeat){
 
-bool isplayablePiece(string piece){
+
+bool isplayablePiece(string piece, int &position){
 char ch1, ch2, ch3;
 for(int i = 0;i<piece.length();i++){
-    for(int j = 1;j<piece.length();j++)
-        for(int f = 2; f<piece.length();f++)
+    for(int j = 1;j<piece.length();j++){
+        for(int f = 2; f<piece.length();f++){
 ch1 = piece[i];
 ch2 = piece[j];
 ch3 = piece[f];
 if(piece[0] == 'C' && piece[1] == '7')
 return true;
-else if(piece[0] == '1' && piece[1] == '1')
-if(piece[0]){
-        badBeat = 0;
+else if(piece[0] == '1' && piece[1] == '1'){
+    if(piece[0]){
+        position = 0;
     }
-    else{badBeat =1;}
-return false;
+    else{position =1;}
+return false;}
 else if(piece[0] == '7' && piece[1] == '7'){
     if(piece[0]){
-        badBeat = 0;
+        position = 0;
     }
-    else{badBeat =1;}
+    else{position =1;}
 return false;}
 else if(ch1 == 'B' && ch2 == '#' && ch3 == '1' )
     return true;
-else if(ch2 == C && ch3 == '7')
+else if(ch2 == 'C' && ch3 == '7')
 return true;
-else if(ch1 == C && ch2 =='b' && ch3 == '7')
+else if(ch1 == 'C' && ch2 =='b' && ch3 == '7')
 return true;
-else if(ch3 == '7')
+else if(ch3 == '7'){
 return false;
-badBeat = piece[f]-2;
-else if(ch3 == '1')
-badBeat = piece[f]-2;
-return false;
+position = piece[f]-2;}
+else if(ch3 == '1'){
+position = piece[f]-2;
+return false;}
+            }
+        }
     }
 return true;
 }
-
-isPlayablePiece;
-
-if(isProperPiece == true && isplayablePiece == true){
-    instructions = transformPiece;
-    return 0;}
-else if( isProperPiece == false )
-return 1;
-else if (isProperPiece == true && isPlayablePiece==false)
-cout<<"BadBeat:" << badBeat;
-return 2;
+int transformPiece(string piece, string& instructions, int& badBeat){
+if(!isProperpiece(piece));{
+    return 1;
+}
+if(isProperpiece(piece) && !isPlayablepiece(piece));{
+    return 2;}
+int i = 0;
+int noteCounter = 0;
+string result;
+char accidentalSign = ' ';
+char note = piece[i];
+int beatCounter = 0;
+while(i<piece.length()){
+if(piece[i] == '/'){
+    piece[i] = ' ';
+    i++;
+    beatCounter++;
+    continue;
+    }
+while(i != '/' || badBeat > 0){
+    noteCounter+=1;
+    if (piece[i] == '#'  ||  piece[i] == 'b')
+            {
+                accidentalSign = piece[i];
+                i++;
+            }
+            int octave = 4;
+            if (isdigit(piece[i]))
+            {
+                octave = piece[i] - '0';
+                i++;
+            }
+    char note = transformNote(int octave, char noteLetter, char accidentalSign);
+    if(note = ' ')
+        badBeat = beatCounter;
+    else if (piece[i] != '/'  &&  noteCounter == 1){
+                result += '[';
+                result += note;}
+        }
+    else if (noteCounter > 1){
+            result += ']';
+            i++;}
+            result = instructions 
+            return 0;
+    }
 }
 
 
 int main(){
-
     return 0;
 }
