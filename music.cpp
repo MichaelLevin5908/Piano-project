@@ -114,7 +114,7 @@ if(isProperpiece(piece) && !isPlayablepiece(piece));{
     return 2;}
 int i = 0;
 int noteCounter = 0;
-string result;
+string final;
 char accidentalSign = ' ';
 char note = piece[i];
 int beatCounter = 0;
@@ -142,13 +142,13 @@ while(i != '/' || badBeat > 0){
     if(note = ' ')
         badBeat = beatCounter;
     else if (piece[i] != '/'  &&  noteCounter == 1){
-                result += '[';
-                result += note;}
+                final += '[';
+                final += note;}
         }
     else if (noteCounter > 1){
-            result += ']';
+            final += ']';
             i++;}
-            result = instructions 
+            final = instructions 
             return 0;
     }
 }
